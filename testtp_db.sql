@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 2019-09-04 06:57:40
+-- Generation Time: 2019-09-10 09:20:42
 -- 服务器版本： 5.7.19-log
 -- PHP Version: 5.6.31
 
@@ -42,7 +42,14 @@ CREATE TABLE IF NOT EXISTS `cms_admin` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `cms_admin`
+--
+
+INSERT INTO `cms_admin` (`id`, `user_name`, `password`, `name`, `nickname`, `avatar`, `email`, `level`, `is_delete`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '$2y$10$3bPTxO9JjeFz0XbZfD42YuruWBadZyjEIDT6Jo/51qWkINq/amqvq', NULL, NULL, NULL, NULL, 1, 0, '2019-09-10 02:02:02', '2019-09-10 02:00:00');
 
 -- --------------------------------------------------------
 
@@ -228,9 +235,17 @@ CREATE TABLE IF NOT EXISTS `cms_permission` (
   `have_edit` tinyint(4) NOT NULL DEFAULT '1' COMMENT '修改权限',
   `have_delete` tinyint(4) NOT NULL DEFAULT '1' COMMENT '删除权限',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at` timestamp NOT NULL COMMENT '修改时间',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='权限表';
+
+--
+-- 转存表中的数据 `cms_permission`
+--
+
+INSERT INTO `cms_permission` (`id`, `name`, `columns`, `have_check`, `have_add`, `have_edit`, `have_delete`, `created_at`, `updated_at`) VALUES
+(1, '超级管理员', '0', 1, 1, 1, 1, '2019-09-10 05:42:12', NULL),
+(2, '超级管理员', '0', 1, 1, 1, 1, '2019-09-10 05:42:15', NULL);
 
 -- --------------------------------------------------------
 

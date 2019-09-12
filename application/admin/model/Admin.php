@@ -13,8 +13,21 @@ class Admin extends Model
 		//TODO:自定义的初始化 
 	}
 
+	// 检查当前登录用户
+	public function check_admin($name)
+	{
+		return Db::name('admin')->where('user_name', $name)->find();
+	}
+
+	//获取所有管理员的列表
 	public function get_admin_list()
 	{
 		return Db::name('admin')->select();
+	}
+
+	// 更新密码
+	public function updatepass($id, $password)
+	{
+		return Db::name('admin')->where('id', $id)->setField('password', $password);
 	}
 }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -6,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
     <title>登录</title>  
-    <link rel="stylesheet" href="css/pintuer.css">
-    <link rel="stylesheet" href="css/admin.css">
-    <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>  
+    <link rel="stylesheet" href="/static/admin/css/pintuer.css">
+    <link rel="stylesheet" href="/static/admin/css/admin.css">
+    <script src="/static/admin/js/jquery.js"></script>
+    <script src="/static/admin/js/pintuer.js"></script>  
 </head>
 <body>
 <div class="bg"></div>
@@ -19,7 +20,7 @@
             <div style="height:150px;"></div>
             <div class="media media-y margin-big-bottom">           
             </div>         
-            <form action="index.html" method="post">
+            <form action="{:url('Login/check_login')}" method="post">
             <div class="panel loginbox">
                 <div class="text-center margin-big padding-big-top"><h1>后台管理中心</h1></div>
                 <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
@@ -38,8 +39,7 @@
                     <div class="form-group">
                         <div class="field">
                             <input type="text" class="input input-big" name="code" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
-                           <img src="images/passcode.jpg" alt="" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="this.src=this.src+'?'">  
-                                                   
+                           <img src="{:captcha_src()}" alt="" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="this.src='{:captcha_src()}'">
                         </div>
                     </div>
                 </div>
@@ -49,6 +49,13 @@
         </div>
     </div>
 </div>
-
+{if condition="!empty($err_msg)"}
+<script type="text/javascript">
+    $(function(){
+        alert('{$err_msg}');
+        window.location='{:url("Admin/login")}';
+    });
+</script>
+{/if}
 </body>
 </html>
