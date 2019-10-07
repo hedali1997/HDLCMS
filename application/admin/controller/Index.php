@@ -2,7 +2,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\MyController;
-use \think\Request;
+use think\Request;
 use think\Validate;
 use app\admin\model\Admin as AdminModel;
 use app\admin\model\Config as ConfigModel;
@@ -27,11 +27,6 @@ class Index extends MyController
     	return $this->fetch('/index');
     }
 
-    public function info()
-    {
-    	return $this->fetch('/info');
-    }
-
     public function page()
     {
     	return $this->fetch('/page');
@@ -44,7 +39,7 @@ class Index extends MyController
 
     public function system()
     {
-        $request = Request::instance(); 
+        $request = Request::instance();
         // 模板变量赋值 
         $info = array(
             '操作系统'=>PHP_OS,

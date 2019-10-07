@@ -17,5 +17,15 @@ class Config extends Model
     {
         $version = Db::query("select version() as ver");
         return $version[0]['ver'];
-    }
+	}
+	
+	public function get_config()
+	{
+		return Db::name('config')->where('id',1)->find();
+	}
+
+	public function update_config($data)
+	{
+		return Db::name('config')->where('id',1)->update($data);
+	}
 }

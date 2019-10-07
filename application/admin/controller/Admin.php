@@ -18,7 +18,7 @@ class Admin extends MyController
 
     public function index()
     {
-    	return $this->fetch('admin');
+    	return $this->fetch('/admin');
     }
 
     // 显示修改密码页面

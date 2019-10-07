@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>网站信息</title>  
+    <link rel="stylesheet" href="/static/admin/css/pintuer.css">
+    <link rel="stylesheet" href="/static/admin/css/admin.css">
+    <link rel="stylesheet" href="/vendor/kindeditor/themes/default/default.css" />
+    <script src="/static/admin/js/jquery.js"></script>
+    <script src="/static/admin/js/pintuer.js"></script>
+    <script src="/vendor/kindeditor/kindeditor-all-min.js"></script>
+    <script src="/vendor/kindeditor/lang/zh-CN.js"></script>
+    <script>
+      {literal}
+      KindEditor.ready(function(K) {
+				var editor = K.editor({
+					allowFileManager : true
+				});
+        K('#image1').click(function() {
+					editor.loadPlugin('image', function() {
+						editor.plugin.imageDialog({
+							showRemote : false,
+							imageUrl : K('#url1').val(),
+							clickFn : function(url, title, width, height, border, align) {
+                K('#url1').val(url);
+                $('#url1').attr('data-image',url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+			});
+      {/literal}
+    </script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 网站信息</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="{:url('Config/update_config')}">
+      <div class="form-group">
+        <div class="label">
+          <label>网站标题：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="title" value="{$config['title']}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站名称：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="name" value="{$config['name']}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+        
+      <div class="form-group">
+        <div class="label">
+          <label>网站LOGO：</label>
+        </div>
+        <div class="field">
+          <input type="text" id="url1" name="logo_img" class="input tips" style="width:25%; float:left;" value="{$config['logo_img']}" data-toggle="hover" data-place="right" data-image="{$config['logo_img']}"  />
+          <input type="button" class="button bg-blue margin-left" id="image1" value="+ 浏览上传" >
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站域名：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="url" value="{$config['url']}" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>ICP备案号：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="icp" value="{$config['icp']}" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站关键字：</label>
+        </div>
+        <div class="field">
+          <textarea class="input" name="keywords">{$config['keywords']}</textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站描述：</label>
+        </div>
+        <div class="field">
+          <textarea class="input" name="description">{$config['description']}</textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>联系人：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="contact_name" value="{$config['contact_name']}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>手机：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="phone" value="{$config['phone']}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>电话：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="tel" value="{$config['tel']}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <!-- <div class="form-group" style="display:none;">
+        <div class="label">
+          <label>400电话：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="s_400" value="" />
+          <div class="tips"></div>
+        </div>
+      </div> -->
+      <div class="form-group">
+        <div class="label">
+          <label>传真：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="fax" value="{$config['fax']}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>QQ：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="qq" value="{$config['qq']}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <!-- <div class="form-group" style="display:none">
+        <div class="label">
+          <label>QQ2：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="qq2" value="" />
+          <div class="tips"></div>
+        </div>
+      </div> -->
+     
+      <div class="form-group">
+        <div class="label">
+          <label>Email：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="email" value="{$config['email']}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>地址：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="address" value="{$config['address']}" />
+          <div class="tips"></div>
+        </div>
+      </div>  
+      <div class="form-group">
+        <div class="label">
+          <label>版权信息：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input" name="copyright" value="{$config['copyright']}" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>文章是否审核：</label>
+        </div>
+        <div class="field" style="padding: 7px;">
+          <label><input name="news_check" type="radio" value="1" {eq name="config['news_check']" value="1"}checked{/eq} />是</label>
+          <label><input name="news_check" type="radio" value="0" {eq name="config['news_check']" value="0"}checked{/eq} />否</label>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>留言评论是否审核：</label>
+        </div>
+        <div class="field" style="padding: 7px;">
+          <label><input name="comments_check" type="radio" value="1" {eq name="config['comments_check']" value="1"}checked{/eq} />是</label>
+          <label><input name="comments_check" type="radio" value="0" {eq name="config['comments_check']" value="0"}checked{/eq} />否</label>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>是否允许注册：</label>
+        </div>
+        <div class="field" style="padding: 7px;">
+          <label><input name="open_register" type="radio" value="1" {eq name="config['open_register']" value="1"}checked{/eq} />是</label>
+          <label><input name="open_register" type="radio" value="0" {eq name="config['open_register']" value="0"}checked{/eq} />否</label>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站开启状态：</label>
+        </div>
+        <div class="field" style="padding: 7px;">
+          <label><input name="web_run" type="radio" value="1" {eq name="config['web_run']" value="1"}checked{/eq} />开启</label>
+          <label><input name="web_run" type="radio" value="0" {eq name="config['web_run']" value="0"}checked{/eq} />关闭</label>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站关闭原因：</label>
+        </div>
+        <div class="field">
+          <textarea name="off_reason" class="input" style="height:120px;">{$config['off_reason']}</textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <!-- <div class="form-group">
+        <div class="label">
+          <label>底部信息：</label>
+        </div>
+        <div class="field">
+          <textarea name="scopyright" class="input" style="height:120px;"></textarea>
+          <div class="tips"></div>
+        </div>
+      </div> -->
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 保存</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
